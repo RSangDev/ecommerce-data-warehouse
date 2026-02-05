@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Camada Bronze - dados brutos do Kaggle"
+    schema: bronze
+    tables:
+      - name: customers
+        description: "Dados de clientes"
+      - name: orders
+        description: "Pedidos realizados"
+      - name: order_items
+        description: "Itens dos pedidos"
+      - name: products
+        description: "Produtos disponíveis"
+      - name: sellers
+        description: "Vendedores"
+      - name: payments
+        description: "Pagamentos"
+      - name: reviews
+        description: "Avaliações dos clientes"

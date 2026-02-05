@@ -1,0 +1,31 @@
+[2026-02-05T15:31:03.883+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T15:31:02.186173+00:00 [queued]>
+[2026-02-05T15:31:03.889+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T15:31:02.186173+00:00 [queued]>
+[2026-02-05T15:31:03.890+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-05T15:31:03.900+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): download_kaggle_dataset> on 2026-02-05 15:31:02.186173+00:00
+[2026-02-05T15:31:03.910+0000] {standard_task_runner.py:60} INFO - Started process 263 to run task
+[2026-02-05T15:31:03.913+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'download_kaggle_dataset', 'manual__2026-02-05T15:31:02.186173+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmps2138505']
+[2026-02-05T15:31:03.916+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask download_kaggle_dataset
+[2026-02-05T15:31:03.989+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T15:31:02.186173+00:00 [running]> on host a8fa1b608109
+[2026-02-05T15:31:04.063+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='download_kaggle_dataset' AIRFLOW_CTX_EXECUTION_DATE='2026-02-05T15:31:02.186173+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-05T15:31:02.186173+00:00'
+[2026-02-05T15:31:04.201+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ecommerce_etl.py", line 22, in download_kaggle_dataset
+    import kaggle
+  File "/home/airflow/.local/lib/python3.11/site-packages/kaggle/__init__.py", line 23, in <module>
+    api.authenticate()
+  File "/home/airflow/.local/lib/python3.11/site-packages/kaggle/api/kaggle_api_extended.py", line 403, in authenticate
+    raise IOError('Could not find {}. Make sure it\'s located in'
+OSError: Could not find kaggle.json. Make sure it's located in /home/***/.kaggle. Or use the environment method.
+[2026-02-05T15:31:04.218+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ecommerce_etl_pipeline, task_id=download_kaggle_dataset, execution_date=20260205T153102, start_date=20260205T153103, end_date=20260205T153104
+[2026-02-05T15:31:04.227+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 3 for task download_kaggle_dataset (Could not find kaggle.json. Make sure it's located in /home/***/.kaggle. Or use the environment method.; 263)
+[2026-02-05T15:31:04.246+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-02-05T15:31:04.266+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

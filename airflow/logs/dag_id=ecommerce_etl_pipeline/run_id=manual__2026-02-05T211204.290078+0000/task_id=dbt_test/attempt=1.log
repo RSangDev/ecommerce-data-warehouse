@@ -1,0 +1,44 @@
+[2026-02-05T21:15:03.912+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.dbt_test manual__2026-02-05T21:12:04.290078+00:00 [queued]>
+[2026-02-05T21:15:03.924+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.dbt_test manual__2026-02-05T21:12:04.290078+00:00 [queued]>
+[2026-02-05T21:15:03.925+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-05T21:15:03.938+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_test> on 2026-02-05 21:12:04.290078+00:00
+[2026-02-05T21:15:03.947+0000] {standard_task_runner.py:60} INFO - Started process 428 to run task
+[2026-02-05T21:15:03.950+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'dbt_test', 'manual__2026-02-05T21:12:04.290078+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmp9dbxvcfy']
+[2026-02-05T21:15:03.952+0000] {standard_task_runner.py:88} INFO - Job 11: Subtask dbt_test
+[2026-02-05T21:15:04.025+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.dbt_test manual__2026-02-05T21:12:04.290078+00:00 [running]> on host 55309008fd85
+[2026-02-05T21:15:04.121+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='dbt_test' AIRFLOW_CTX_EXECUTION_DATE='2026-02-05T21:12:04.290078+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-05T21:12:04.290078+00:00'
+[2026-02-05T21:15:04.124+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-02-05T21:15:04.125+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt_project && dbt test --profiles-dir .']
+[2026-02-05T21:15:04.139+0000] {subprocess.py:86} INFO - Output:
+[2026-02-05T21:15:06.434+0000] {subprocess.py:93} INFO - [0m21:15:06  Running with dbt=1.7.7
+[2026-02-05T21:15:06.826+0000] {subprocess.py:93} INFO - [0m21:15:06  Registered adapter: postgres=1.7.7
+[2026-02-05T21:15:07.027+0000] {subprocess.py:93} INFO - [0m21:15:07  Found 6 models, 8 tests, 7 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[2026-02-05T21:15:07.031+0000] {subprocess.py:93} INFO - [0m21:15:07
+[2026-02-05T21:15:07.128+0000] {subprocess.py:93} INFO - [0m21:15:07  Concurrency: 4 threads (target='dev')
+[2026-02-05T21:15:07.130+0000] {subprocess.py:93} INFO - [0m21:15:07
+[2026-02-05T21:15:07.141+0000] {subprocess.py:93} INFO - [0m21:15:07  1 of 8 START test not_null_silver_customers_customer_id ........................ [RUN]
+[2026-02-05T21:15:07.143+0000] {subprocess.py:93} INFO - [0m21:15:07  2 of 8 START test not_null_silver_order_items_order_id ......................... [RUN]
+[2026-02-05T21:15:07.144+0000] {subprocess.py:93} INFO - [0m21:15:07  3 of 8 START test not_null_silver_orders_customer_id ........................... [RUN]
+[2026-02-05T21:15:07.145+0000] {subprocess.py:93} INFO - [0m21:15:07  4 of 8 START test not_null_silver_orders_order_id .............................. [RUN]
+[2026-02-05T21:15:07.314+0000] {subprocess.py:93} INFO - [0m21:15:07  2 of 8 PASS not_null_silver_order_items_order_id ............................... [[32mPASS[0m in 0.17s]
+[2026-02-05T21:15:07.324+0000] {subprocess.py:93} INFO - [0m21:15:07  3 of 8 PASS not_null_silver_orders_customer_id ................................. [[32mPASS[0m in 0.17s]
+[2026-02-05T21:15:07.326+0000] {subprocess.py:93} INFO - [0m21:15:07  1 of 8 PASS not_null_silver_customers_customer_id .............................. [[32mPASS[0m in 0.18s]
+[2026-02-05T21:15:07.329+0000] {subprocess.py:93} INFO - [0m21:15:07  4 of 8 PASS not_null_silver_orders_order_id .................................... [[32mPASS[0m in 0.18s]
+[2026-02-05T21:15:07.334+0000] {subprocess.py:93} INFO - [0m21:15:07  5 of 8 START test relationships_silver_order_items_order_id__order_id__ref_silver_orders_  [RUN]
+[2026-02-05T21:15:07.345+0000] {subprocess.py:93} INFO - [0m21:15:07  6 of 8 START test relationships_silver_orders_customer_id__customer_id__ref_silver_customers_  [RUN]
+[2026-02-05T21:15:07.346+0000] {subprocess.py:93} INFO - [0m21:15:07  7 of 8 START test unique_silver_customers_customer_id .......................... [RUN]
+[2026-02-05T21:15:07.348+0000] {subprocess.py:93} INFO - [0m21:15:07  8 of 8 START test unique_silver_orders_order_id ................................ [RUN]
+[2026-02-05T21:15:07.544+0000] {subprocess.py:93} INFO - [0m21:15:07  5 of 8 PASS relationships_silver_order_items_order_id__order_id__ref_silver_orders_  [[32mPASS[0m in 0.20s]
+[2026-02-05T21:15:07.581+0000] {subprocess.py:93} INFO - [0m21:15:07  6 of 8 PASS relationships_silver_orders_customer_id__customer_id__ref_silver_customers_  [[32mPASS[0m in 0.23s]
+[2026-02-05T21:15:07.618+0000] {subprocess.py:93} INFO - [0m21:15:07  7 of 8 PASS unique_silver_customers_customer_id ................................ [[32mPASS[0m in 0.27s]
+[2026-02-05T21:15:07.625+0000] {subprocess.py:93} INFO - [0m21:15:07  8 of 8 PASS unique_silver_orders_order_id ...................................... [[32mPASS[0m in 0.26s]
+[2026-02-05T21:15:07.665+0000] {subprocess.py:93} INFO - [0m21:15:07
+[2026-02-05T21:15:07.666+0000] {subprocess.py:93} INFO - [0m21:15:07  Finished running 8 tests in 0 hours 0 minutes and 0.63 seconds (0.63s).
+[2026-02-05T21:15:07.696+0000] {subprocess.py:93} INFO - [0m21:15:07
+[2026-02-05T21:15:07.698+0000] {subprocess.py:93} INFO - [0m21:15:07  [32mCompleted successfully[0m
+[2026-02-05T21:15:07.700+0000] {subprocess.py:93} INFO - [0m21:15:07
+[2026-02-05T21:15:07.701+0000] {subprocess.py:93} INFO - [0m21:15:07  Done. PASS=8 WARN=0 ERROR=0 SKIP=0 TOTAL=8
+[2026-02-05T21:15:08.864+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-05T21:15:08.889+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ecommerce_etl_pipeline, task_id=dbt_test, execution_date=20260205T211204, start_date=20260205T211503, end_date=20260205T211508
+[2026-02-05T21:15:08.906+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-05T21:15:08.922+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: silver_customers
+    description: "Clientes limpos e padronizados"
+    columns:
+      - name: customer_id
+        description: "ID único do cliente"
+        tests:
+          - unique
+          - not_null
+
+  - name: silver_orders
+    description: "Pedidos limpos"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('silver_customers')
+              field: customer_id
+
+  - name: silver_order_items
+    description: "Itens dos pedidos"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('silver_orders')
+              field: order_id

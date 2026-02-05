@@ -1,0 +1,44 @@
+[2026-02-05T17:53:08.450+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T17:53:07.395611+00:00 [queued]>
+[2026-02-05T17:53:08.460+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T17:53:07.395611+00:00 [queued]>
+[2026-02-05T17:53:08.461+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-02-05T17:53:08.473+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): download_kaggle_dataset> on 2026-02-05 17:53:07.395611+00:00
+[2026-02-05T17:53:08.480+0000] {standard_task_runner.py:60} INFO - Started process 359 to run task
+[2026-02-05T17:53:08.488+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'download_kaggle_dataset', 'manual__2026-02-05T17:53:07.395611+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmp2vwv566m']
+[2026-02-05T17:53:08.496+0000] {standard_task_runner.py:88} INFO - Job 2: Subtask download_kaggle_dataset
+[2026-02-05T17:53:08.648+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.download_kaggle_dataset manual__2026-02-05T17:53:07.395611+00:00 [running]> on host 7857a5475927
+[2026-02-05T17:53:08.770+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='download_kaggle_dataset' AIRFLOW_CTX_EXECUTION_DATE='2026-02-05T17:53:07.395611+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-05T17:53:07.395611+00:00'
+[2026-02-05T17:53:09.002+0000] {logging_mixin.py:188} INFO - Warning: Your Kaggle API key is readable by other users on this system! To fix this, you can run 'chmod 600 /home/***/.kaggle/kaggle.json'
+[2026-02-05T17:53:09.013+0000] {logging_mixin.py:188} INFO - ✅ Credenciais Kaggle carregadas: raelsan
+[2026-02-05T17:53:09.015+0000] {logging_mixin.py:188} INFO - 📥 Baixando dataset do Kaggle (pode demorar 2-5 minutos)...
+[2026-02-05T17:53:13.195+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/kaggle/api/kaggle_api_extended.py", line 1456, in dataset_download_files
+    with zipfile.ZipFile(outfile) as z:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/zipfile.py", line 1304, in __init__
+    self._RealGetContents()
+  File "/usr/local/lib/python3.11/zipfile.py", line 1371, in _RealGetContents
+    raise BadZipFile("File is not a zip file")
+zipfile.BadZipFile: File is not a zip file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ecommerce_etl.py", line 40, in download_kaggle_dataset
+    kaggle.api.dataset_download_files(
+  File "/home/airflow/.local/lib/python3.11/site-packages/kaggle/api/kaggle_api_extended.py", line 1459, in dataset_download_files
+    raise ValueError(
+ValueError: ('Bad zip file, please report on www.github.com/kaggle/kaggle-api', BadZipFile('File is not a zip file'))
+[2026-02-05T17:53:13.226+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ecommerce_etl_pipeline, task_id=download_kaggle_dataset, execution_date=20260205T175307, start_date=20260205T175308, end_date=20260205T175313
+[2026-02-05T17:53:13.245+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 2 for task download_kaggle_dataset (('Bad zip file, please report on www.github.com/kaggle/kaggle-api', BadZipFile('File is not a zip file')); 359)
+[2026-02-05T17:53:13.282+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-02-05T17:53:13.321+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

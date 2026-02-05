@@ -154,7 +154,7 @@ data-warehouse-project/
 
 ### 1️⃣ Clonar o Repositório
 ```bash
-git clone https://github.com/seu-usuario/ecommerce-data-warehouse.git
+git clone https://github.com/RSangDev/ecommerce-data-warehouse.git
 cd ecommerce-data-warehouse
 ```
 
@@ -354,7 +354,6 @@ Este projeto demonstra:
 - [ ] CI/CD com GitHub Actions
 
 ### Médio Prazo
-- [ ] Migrar para dbt Cloud
 - [ ] Adicionar Apache Spark para big data
 - [ ] Implementar Data Lakehouse (Delta Lake)
 - [ ] ML para previsão de demanda
@@ -363,7 +362,6 @@ Este projeto demonstra:
 - [ ] Migrar para AWS/GCP (Redshift/BigQuery)
 - [ ] Streaming com Apache Kafka
 - [ ] Feature Store para ML
-- [ ] Real-time dashboards
 
 ---
 

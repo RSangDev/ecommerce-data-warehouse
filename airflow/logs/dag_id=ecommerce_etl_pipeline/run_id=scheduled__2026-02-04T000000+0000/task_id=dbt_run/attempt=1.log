@@ -1,0 +1,40 @@
+[2026-02-05T21:13:23.890+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.dbt_run scheduled__2026-02-04T00:00:00+00:00 [queued]>
+[2026-02-05T21:13:23.897+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.dbt_run scheduled__2026-02-04T00:00:00+00:00 [queued]>
+[2026-02-05T21:13:23.898+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-05T21:13:23.908+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_run> on 2026-02-04 00:00:00+00:00
+[2026-02-05T21:13:23.914+0000] {standard_task_runner.py:60} INFO - Started process 314 to run task
+[2026-02-05T21:13:23.917+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'dbt_run', 'scheduled__2026-02-04T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmpdk8f_pc6']
+[2026-02-05T21:13:23.919+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask dbt_run
+[2026-02-05T21:13:23.980+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.dbt_run scheduled__2026-02-04T00:00:00+00:00 [running]> on host 55309008fd85
+[2026-02-05T21:13:24.050+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2026-02-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-04T00:00:00+00:00'
+[2026-02-05T21:13:24.052+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-02-05T21:13:24.053+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt_project && dbt run --profiles-dir . --full-refresh']
+[2026-02-05T21:13:24.062+0000] {subprocess.py:86} INFO - Output:
+[2026-02-05T21:13:27.012+0000] {subprocess.py:93} INFO - [0m21:13:27  Running with dbt=1.7.7
+[2026-02-05T21:13:27.482+0000] {subprocess.py:93} INFO - [0m21:13:27  Registered adapter: postgres=1.7.7
+[2026-02-05T21:13:27.836+0000] {subprocess.py:93} INFO - [0m21:13:27  Found 6 models, 8 tests, 7 sources, 0 exposures, 0 metrics, 401 macros, 0 groups, 0 semantic models
+[2026-02-05T21:13:27.842+0000] {subprocess.py:93} INFO - [0m21:13:27
+[2026-02-05T21:13:28.016+0000] {subprocess.py:93} INFO - [0m21:13:28  Concurrency: 4 threads (target='dev')
+[2026-02-05T21:13:28.018+0000] {subprocess.py:93} INFO - [0m21:13:28
+[2026-02-05T21:13:28.029+0000] {subprocess.py:93} INFO - [0m21:13:28  1 of 6 START sql table model public_silver.silver_customers .................... [RUN]
+[2026-02-05T21:13:28.030+0000] {subprocess.py:93} INFO - [0m21:13:28  2 of 6 START sql table model public_silver.silver_order_items .................. [RUN]
+[2026-02-05T21:13:28.031+0000] {subprocess.py:93} INFO - [0m21:13:28  3 of 6 START sql table model public_silver.silver_orders ....................... [RUN]
+[2026-02-05T21:13:28.032+0000] {subprocess.py:93} INFO - [0m21:13:28  4 of 6 START sql table model public_silver.silver_products ..................... [RUN]
+[2026-02-05T21:13:28.353+0000] {subprocess.py:93} INFO - [0m21:13:28  4 of 6 OK created sql table model public_silver.silver_products ................ [[32mSELECT 32951[0m in 0.31s]
+[2026-02-05T21:13:29.046+0000] {subprocess.py:93} INFO - [0m21:13:29  1 of 6 OK created sql table model public_silver.silver_customers ............... [[32mSELECT 99441[0m in 1.01s]
+[2026-02-05T21:13:29.478+0000] {subprocess.py:93} INFO - [0m21:13:29  3 of 6 OK created sql table model public_silver.silver_orders .................. [[32mSELECT 99441[0m in 1.44s]
+[2026-02-05T21:13:29.479+0000] {subprocess.py:93} INFO - [0m21:13:29  2 of 6 OK created sql table model public_silver.silver_order_items ............. [[32mSELECT 112650[0m in 1.44s]
+[2026-02-05T21:13:29.488+0000] {subprocess.py:93} INFO - [0m21:13:29  5 of 6 START sql table model public_gold.gold_customer_lifetime_value .......... [RUN]
+[2026-02-05T21:13:29.490+0000] {subprocess.py:93} INFO - [0m21:13:29  6 of 6 START sql table model public_gold.gold_sales_by_state ................... [RUN]
+[2026-02-05T21:13:31.769+0000] {subprocess.py:93} INFO - [0m21:13:31  6 of 6 OK created sql table model public_gold.gold_sales_by_state .............. [[32mSELECT 556[0m in 2.27s]
+[2026-02-05T21:13:32.156+0000] {subprocess.py:93} INFO - [0m21:13:32  5 of 6 OK created sql table model public_gold.gold_customer_lifetime_value ..... [[32mSELECT 96478[0m in 2.66s]
+[2026-02-05T21:13:32.181+0000] {subprocess.py:93} INFO - [0m21:13:32
+[2026-02-05T21:13:32.182+0000] {subprocess.py:93} INFO - [0m21:13:32  Finished running 6 table models in 0 hours 0 minutes and 4.34 seconds (4.34s).
+[2026-02-05T21:13:32.208+0000] {subprocess.py:93} INFO - [0m21:13:32
+[2026-02-05T21:13:32.209+0000] {subprocess.py:93} INFO - [0m21:13:32  [32mCompleted successfully[0m
+[2026-02-05T21:13:32.211+0000] {subprocess.py:93} INFO - [0m21:13:32
+[2026-02-05T21:13:32.212+0000] {subprocess.py:93} INFO - [0m21:13:32  Done. PASS=6 WARN=0 ERROR=0 SKIP=0 TOTAL=6
+[2026-02-05T21:13:33.655+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-05T21:13:33.682+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ecommerce_etl_pipeline, task_id=dbt_run, execution_date=20260204T000000, start_date=20260205T211323, end_date=20260205T211333
+[2026-02-05T21:13:33.735+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-05T21:13:33.752+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: gold_sales_by_state
+    description: "Vendas agregadas por estado"
+    
+  - name: gold_customer_lifetime_value
+    description: "Valor do tempo de vida do cliente (CLV)"
