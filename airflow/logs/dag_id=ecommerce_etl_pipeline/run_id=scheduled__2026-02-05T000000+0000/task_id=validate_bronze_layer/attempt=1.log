@@ -1,0 +1,43 @@
+[2026-02-06T21:46:48.550+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.validate_bronze_layer scheduled__2026-02-05T00:00:00+00:00 [queued]>
+[2026-02-06T21:46:48.565+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.validate_bronze_layer scheduled__2026-02-05T00:00:00+00:00 [queued]>
+[2026-02-06T21:46:48.566+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-06T21:46:48.581+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): validate_bronze_layer> on 2026-02-05 00:00:00+00:00
+[2026-02-06T21:46:48.586+0000] {standard_task_runner.py:60} INFO - Started process 348 to run task
+[2026-02-06T21:46:48.589+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'validate_bronze_layer', 'scheduled__2026-02-05T00:00:00+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmp_kjm0m8y']
+[2026-02-06T21:46:48.592+0000] {standard_task_runner.py:88} INFO - Job 15: Subtask validate_bronze_layer
+[2026-02-06T21:46:48.674+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.validate_bronze_layer scheduled__2026-02-05T00:00:00+00:00 [running]> on host 55309008fd85
+[2026-02-06T21:46:48.762+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='validate_bronze_layer' AIRFLOW_CTX_EXECUTION_DATE='2026-02-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-05T00:00:00+00:00'
+[2026-02-06T21:46:48.764+0000] {ecommerce_etl.py:324} INFO - ======================================================================
+[2026-02-06T21:46:48.765+0000] {ecommerce_etl.py:325} INFO - VALIDANDO CAMADA BRONZE
+[2026-02-06T21:46:48.765+0000] {ecommerce_etl.py:326} INFO - ======================================================================
+[2026-02-06T21:46:48.766+0000] {ecommerce_etl.py:341} INFO - 
+📋 Verificando 7 tabelas esperadas:
+
+[2026-02-06T21:46:48.801+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.customers                99,441 registros |  6 colunas
+[2026-02-06T21:46:48.813+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.orders                   99,441 registros |  9 colunas
+[2026-02-06T21:46:48.823+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.order_items             112,650 registros |  8 colunas
+[2026-02-06T21:46:48.828+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.products                 32,951 registros | 10 colunas
+[2026-02-06T21:46:48.832+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.sellers                   3,095 registros |  5 colunas
+[2026-02-06T21:46:48.840+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.payments                103,886 registros |  6 colunas
+[2026-02-06T21:46:48.850+0000] {ecommerce_etl.py:364} INFO -    ✅ bronze.reviews                  99,224 registros |  8 colunas
+[2026-02-06T21:46:48.851+0000] {ecommerce_etl.py:380} INFO - 
+======================================================================
+[2026-02-06T21:46:48.851+0000] {ecommerce_etl.py:381} INFO - 📊 RESULTADO DA VALIDAÇÃO
+[2026-02-06T21:46:48.852+0000] {ecommerce_etl.py:382} INFO - ======================================================================
+[2026-02-06T21:46:48.852+0000] {ecommerce_etl.py:383} INFO -    Tabelas OK: 7/7
+[2026-02-06T21:46:48.852+0000] {ecommerce_etl.py:384} INFO -    Total de registros: 550,688
+[2026-02-06T21:46:48.853+0000] {ecommerce_etl.py:387} INFO - 
+📈 Distribuição de dados:
+[2026-02-06T21:46:48.853+0000] {ecommerce_etl.py:391} INFO -    customers             18.06%
+[2026-02-06T21:46:48.853+0000] {ecommerce_etl.py:391} INFO -    orders                18.06%
+[2026-02-06T21:46:48.853+0000] {ecommerce_etl.py:391} INFO -    order_items           20.46%
+[2026-02-06T21:46:48.854+0000] {ecommerce_etl.py:391} INFO -    products               5.98%
+[2026-02-06T21:46:48.854+0000] {ecommerce_etl.py:391} INFO -    sellers                0.56%
+[2026-02-06T21:46:48.854+0000] {ecommerce_etl.py:391} INFO -    payments              18.86%
+[2026-02-06T21:46:48.854+0000] {ecommerce_etl.py:391} INFO -    reviews               18.02%
+[2026-02-06T21:46:48.855+0000] {ecommerce_etl.py:393} INFO - ======================================================================
+[2026-02-06T21:46:48.855+0000] {ecommerce_etl.py:407} INFO - ✅ VALIDAÇÃO COMPLETA: Todas as tabelas OK!
+[2026-02-06T21:46:48.855+0000] {python.py:201} INFO - Done. Returned value was: {'tables_ok': 7, 'total_tables': 7, 'total_records': 550688}
+[2026-02-06T21:46:48.878+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ecommerce_etl_pipeline, task_id=validate_bronze_layer, execution_date=20260205T000000, start_date=20260206T214648, end_date=20260206T214648
+[2026-02-06T21:46:48.923+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-06T21:46:48.950+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

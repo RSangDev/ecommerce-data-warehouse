@@ -1,0 +1,18 @@
+[2026-02-08T17:03:46.353+0000] {processor.py:161} INFO - Started process (PID=193) to work on /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:03:46.355+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/data_quality_checks.py for tasks to queue
+[2026-02-08T17:03:46.357+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:03:46.356+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:03:57.619+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:03:57.618+0000] {warnings.py:110} WARNING - /opt/airflow/dags/data_quality_checks.py:50: RemovedInAirflow3Warning: Param `schedule_interval` is deprecated and will be removed in a future release. Please use `schedule` instead. 
+  with DAG(
+[2026-02-08T17:03:57.655+0000] {processor.py:840} INFO - DAG(s) 'data_quality_checks' retrieved from /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:03:57.718+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:03:57.718+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-02-08T17:03:57.758+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:03:57.758+0000] {dag.py:3823} INFO - Setting next_dagrun for data_quality_checks to 2026-02-08 00:00:00+00:00, run_after=2026-02-09 00:00:00+00:00
+[2026-02-08T17:03:57.795+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/data_quality_checks.py took 11.449 seconds
+[2026-02-08T17:04:28.154+0000] {processor.py:161} INFO - Started process (PID=288) to work on /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:04:28.156+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/data_quality_checks.py for tasks to queue
+[2026-02-08T17:04:28.157+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:04:28.156+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:04:31.497+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:04:31.497+0000] {warnings.py:110} WARNING - /opt/airflow/dags/data_quality_checks.py:50: RemovedInAirflow3Warning: Param `schedule_interval` is deprecated and will be removed in a future release. Please use `schedule` instead. 
+  with DAG(
+[2026-02-08T17:04:31.503+0000] {processor.py:840} INFO - DAG(s) 'data_quality_checks' retrieved from /opt/airflow/dags/data_quality_checks.py
+[2026-02-08T17:04:31.527+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:04:31.527+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2026-02-08T17:04:31.550+0000] {logging_mixin.py:188} INFO - [2026-02-08T17:04:31.549+0000] {dag.py:3823} INFO - Setting next_dagrun for data_quality_checks to 2026-02-08 00:00:00+00:00, run_after=2026-02-09 00:00:00+00:00
+[2026-02-08T17:04:31.574+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/data_quality_checks.py took 3.424 seconds

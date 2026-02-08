@@ -1,0 +1,143 @@
+[2026-02-08T17:03:58.648+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-07T00:00:00+00:00 [queued]>
+[2026-02-08T17:03:58.667+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-07T00:00:00+00:00 [queued]>
+[2026-02-08T17:03:58.668+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-08T17:03:58.683+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_to_bronze_layer> on 2026-02-07 00:00:00+00:00
+[2026-02-08T17:03:58.730+0000] {standard_task_runner.py:60} INFO - Started process 275 to run task
+[2026-02-08T17:03:58.734+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'load_to_bronze_layer', 'scheduled__2026-02-07T00:00:00+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmput1xrvxz']
+[2026-02-08T17:03:58.738+0000] {standard_task_runner.py:88} INFO - Job 38: Subtask load_to_bronze_layer
+[2026-02-08T17:03:58.831+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-07T00:00:00+00:00 [running]> on host 33ee8755038f
+[2026-02-08T17:03:58.940+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='load_to_bronze_layer' AIRFLOW_CTX_EXECUTION_DATE='2026-02-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-07T00:00:00+00:00'
+[2026-02-08T17:03:59.358+0000] {ecommerce_etl.py:151} INFO - ======================================================================
+[2026-02-08T17:03:59.359+0000] {ecommerce_etl.py:152} INFO - INICIANDO CARGA NA CAMADA BRONZE
+[2026-02-08T17:03:59.360+0000] {ecommerce_etl.py:153} INFO - ======================================================================
+[2026-02-08T17:03:59.375+0000] {ecommerce_etl.py:167} INFO - ✅ Conexão PostgreSQL estabelecida
+[2026-02-08T17:03:59.379+0000] {ecommerce_etl.py:176} INFO - ✅ Schema bronze criado/verificado
+[2026-02-08T17:03:59.385+0000] {ecommerce_etl.py:194} INFO - 
+📁 Arquivos CSV disponíveis: 9
+[2026-02-08T17:03:59.386+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:03:59.388+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.customers
+[2026-02-08T17:03:59.389+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_customers_dataset.csv
+[2026-02-08T17:03:59.393+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:03:59.669+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 99,441 linhas × 5 colunas
+[2026-02-08T17:03:59.674+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.customers...
+[2026-02-08T17:04:12.260+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 12.6s
+[2026-02-08T17:04:12.272+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 99,441 registros
+[2026-02-08T17:04:12.273+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:04:12.274+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.orders
+[2026-02-08T17:04:12.274+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_orders_dataset.csv
+[2026-02-08T17:04:12.275+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:04:12.737+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 99,441 linhas × 8 colunas
+[2026-02-08T17:04:12.739+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.orders...
+[2026-02-08T17:04:27.672+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 14.9s
+[2026-02-08T17:04:27.681+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 99,441 registros
+[2026-02-08T17:04:27.682+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:04:27.683+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.order_items
+[2026-02-08T17:04:27.683+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_order_items_dataset.csv
+[2026-02-08T17:04:27.686+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:04:27.996+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 112,650 linhas × 7 colunas
+[2026-02-08T17:04:27.998+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.order_items...
+[2026-02-08T17:04:42.539+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 14.5s
+[2026-02-08T17:04:42.554+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 112,650 registros
+[2026-02-08T17:04:42.555+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:04:42.556+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.products
+[2026-02-08T17:04:42.556+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_products_dataset.csv
+[2026-02-08T17:04:42.558+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:04:42.625+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 32,951 linhas × 9 colunas
+[2026-02-08T17:04:42.627+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.products...
+[2026-02-08T17:04:47.558+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-02-08T17:04:47.587+0000] {process_utils.py:131} INFO - Sending 15 to group 275. PIDs of all processes in the group: [275]
+[2026-02-08T17:04:47.591+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 275
+[2026-02-08T17:04:47.592+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-02-08T17:04:47.596+0000] {ecommerce_etl.py:272} ERROR -    ❌ ERRO: Task received SIGTERM signal
+[2026-02-08T17:04:47.671+0000] {ecommerce_etl.py:276} ERROR - Traceback (most recent call last):
+  File "/opt/***/dags/ecommerce_etl.py", line 240, in load_to_bronze
+    df.to_sql(
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/core/generic.py", line 2878, in to_sql
+    return sql.to_sql(
+           ^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/io/sql.py", line 769, in to_sql
+    return pandas_sql.to_sql(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/io/sql.py", line 1920, in to_sql
+    total_inserted = sql_engine.insert_records(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/io/sql.py", line 1461, in insert_records
+    return table.insert(chunksize=chunksize, method=method)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/io/sql.py", line 1023, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/pandas/io/sql.py", line 945, in _execute_insert_multi
+    result = conn.execute(stmt)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1385, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1569, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 545, in _compile_w_cache
+    compiled_sql = self._compiler(
+                   ^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 567, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/compiler.py", line 809, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/compiler.py", line 464, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/compiler.py", line 499, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/visitors.py", line 82, in _compiler_dispatch
+    return meth(self, **kw)
+           ^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/compiler.py", line 4017, in visit_insert
+    crud_params = crud._get_crud_params(
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/crud.py", line 178, in _get_crud_params
+    values = _extend_values_for_multiparams(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/crud.py", line 961, in _extend_values_for_multiparams
+    new_param = _create_bind_param(
+                ^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/crud.py", line 216, in _create_bind_param
+    bindparam = bindparam._compiler_dispatch(compiler, **kw)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/visitors.py", line 82, in _compiler_dispatch
+    return meth(self, **kw)
+           ^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/compiler.py", line 2480, in visit_bindparam
+    impl = bindparam.type.dialect_impl(self.dialect)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/***/.local/lib/python3.11/site-packages/sqlalchemy/sql/type_api.py", line 645, in dialect_impl
+    def dialect_impl(self, dialect):
+    
+  File "/home/***/.local/lib/python3.11/site-packages/***/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+***.exceptions.AirflowException: Task received SIGTERM signal
+
+[2026-02-08T17:04:47.689+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:04:47.690+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.sellers
+[2026-02-08T17:04:47.691+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_sellers_dataset.csv
+[2026-02-08T17:04:47.694+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:04:47.707+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 3,095 linhas × 4 colunas
+[2026-02-08T17:04:47.709+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.sellers...
+[2026-02-08T17:04:48.169+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 0.5s
+[2026-02-08T17:04:48.177+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 3,095 registros
+[2026-02-08T17:04:48.180+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-08T17:04:48.181+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.payments
+[2026-02-08T17:04:48.187+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_order_payments_dataset.csv
+[2026-02-08T17:04:48.205+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-08T17:04:48.532+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 103,886 linhas × 5 colunas
+[2026-02-08T17:04:48.535+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.payments...

@@ -6,4 +6,10 @@ pandas==2.0.3
 sqlalchemy==1.4.49
 psycopg2-binary==2.9.9
 great-expectations==0.18.8
-kagglehub
+pytest==8.0.0
+kagglehub==0.4.3
+apache-airflow==2.8.1
+sqlparse==0.4.4
+black==26.1.0
+flake8==7.3.0
+pytest-cov==7.0.0

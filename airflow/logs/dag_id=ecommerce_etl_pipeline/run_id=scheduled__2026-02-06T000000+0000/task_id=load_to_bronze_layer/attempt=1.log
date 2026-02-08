@@ -1,0 +1,99 @@
+[2026-02-07T17:33:42.223+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-06T00:00:00+00:00 [queued]>
+[2026-02-07T17:33:42.231+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-06T00:00:00+00:00 [queued]>
+[2026-02-07T17:33:42.232+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-07T17:33:42.242+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): load_to_bronze_layer> on 2026-02-06 00:00:00+00:00
+[2026-02-07T17:33:42.247+0000] {standard_task_runner.py:60} INFO - Started process 264 to run task
+[2026-02-07T17:33:42.250+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_etl_pipeline', 'load_to_bronze_layer', 'scheduled__2026-02-06T00:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl.py', '--cfg-path', '/tmp/tmpqp03drie']
+[2026-02-07T17:33:42.253+0000] {standard_task_runner.py:88} INFO - Job 30: Subtask load_to_bronze_layer
+[2026-02-07T17:33:42.313+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_etl_pipeline.load_to_bronze_layer scheduled__2026-02-06T00:00:00+00:00 [running]> on host 33ee8755038f
+[2026-02-07T17:33:42.398+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineer' AIRFLOW_CTX_DAG_ID='ecommerce_etl_pipeline' AIRFLOW_CTX_TASK_ID='load_to_bronze_layer' AIRFLOW_CTX_EXECUTION_DATE='2026-02-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-06T00:00:00+00:00'
+[2026-02-07T17:33:42.638+0000] {ecommerce_etl.py:151} INFO - ======================================================================
+[2026-02-07T17:33:42.643+0000] {ecommerce_etl.py:152} INFO - INICIANDO CARGA NA CAMADA BRONZE
+[2026-02-07T17:33:42.644+0000] {ecommerce_etl.py:153} INFO - ======================================================================
+[2026-02-07T17:33:42.654+0000] {ecommerce_etl.py:167} INFO - ✅ Conexão PostgreSQL estabelecida
+[2026-02-07T17:33:42.656+0000] {ecommerce_etl.py:176} INFO - ✅ Schema bronze criado/verificado
+[2026-02-07T17:33:42.669+0000] {ecommerce_etl.py:194} INFO - 
+📁 Arquivos CSV disponíveis: 9
+[2026-02-07T17:33:42.669+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:33:42.670+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.customers
+[2026-02-07T17:33:42.671+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_customers_dataset.csv
+[2026-02-07T17:33:42.677+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:33:42.861+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 99,441 linhas × 5 colunas
+[2026-02-07T17:33:42.863+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.customers...
+[2026-02-07T17:33:51.129+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 8.3s
+[2026-02-07T17:33:51.138+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 99,441 registros
+[2026-02-07T17:33:51.139+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:33:51.139+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.orders
+[2026-02-07T17:33:51.140+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_orders_dataset.csv
+[2026-02-07T17:33:51.143+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:33:51.495+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 99,441 linhas × 8 colunas
+[2026-02-07T17:33:51.496+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.orders...
+[2026-02-07T17:34:02.312+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 10.8s
+[2026-02-07T17:34:02.321+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 99,441 registros
+[2026-02-07T17:34:02.322+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:34:02.323+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.order_items
+[2026-02-07T17:34:02.323+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_order_items_dataset.csv
+[2026-02-07T17:34:02.327+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:34:02.557+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 112,650 linhas × 7 colunas
+[2026-02-07T17:34:02.559+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.order_items...
+[2026-02-07T17:34:15.713+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 13.2s
+[2026-02-07T17:34:15.724+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 112,650 registros
+[2026-02-07T17:34:15.725+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:34:15.726+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.products
+[2026-02-07T17:34:15.727+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_products_dataset.csv
+[2026-02-07T17:34:15.730+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:34:15.778+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 32,951 linhas × 9 colunas
+[2026-02-07T17:34:15.779+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.products...
+[2026-02-07T17:34:20.160+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 4.4s
+[2026-02-07T17:34:20.163+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 32,951 registros
+[2026-02-07T17:34:20.167+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:34:20.167+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.sellers
+[2026-02-07T17:34:20.169+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_sellers_dataset.csv
+[2026-02-07T17:34:20.170+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:34:20.180+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 3,095 linhas × 4 colunas
+[2026-02-07T17:34:20.181+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.sellers...
+[2026-02-07T17:34:20.359+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 0.2s
+[2026-02-07T17:34:20.361+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 3,095 registros
+[2026-02-07T17:34:20.361+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:34:20.362+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.payments
+[2026-02-07T17:34:20.362+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_order_payments_dataset.csv
+[2026-02-07T17:34:20.363+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:34:20.453+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 103,886 linhas × 5 colunas
+[2026-02-07T17:34:20.455+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.payments...
+[2026-02-07T17:34:29.105+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 8.6s
+[2026-02-07T17:34:29.115+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 103,886 registros
+[2026-02-07T17:34:29.116+0000] {ecommerce_etl.py:214} INFO - 
+============================================================
+[2026-02-07T17:34:29.116+0000] {ecommerce_etl.py:215} INFO - 📊 TABELA: bronze.reviews
+[2026-02-07T17:34:29.117+0000] {ecommerce_etl.py:216} INFO -    Arquivo: olist_order_reviews_dataset.csv
+[2026-02-07T17:34:29.119+0000] {ecommerce_etl.py:225} INFO -    📖 Lendo CSV...
+[2026-02-07T17:34:29.854+0000] {ecommerce_etl.py:230} INFO -    ✅ Lido: 99,224 linhas × 7 colunas
+[2026-02-07T17:34:29.856+0000] {ecommerce_etl.py:236} INFO -    💾 Inserindo em bronze.reviews...
+[2026-02-07T17:34:40.177+0000] {ecommerce_etl.py:251} INFO -    ✅ Inserção concluída em 10.3s
+[2026-02-07T17:34:40.189+0000] {ecommerce_etl.py:261} INFO -    ✅ Verificado: 99,224 registros
+[2026-02-07T17:34:40.190+0000] {ecommerce_etl.py:279} INFO - 
+======================================================================
+[2026-02-07T17:34:40.191+0000] {ecommerce_etl.py:280} INFO - 📊 RESUMO DA CARGA
+[2026-02-07T17:34:40.191+0000] {ecommerce_etl.py:281} INFO - ======================================================================
+[2026-02-07T17:34:40.191+0000] {ecommerce_etl.py:282} INFO - ✅ Sucesso: 7/7 tabelas
+[2026-02-07T17:34:40.192+0000] {ecommerce_etl.py:283} INFO - 📈 Total: 550,688 registros carregados
+[2026-02-07T17:34:40.192+0000] {ecommerce_etl.py:291} INFO - 
+🔍 Tabelas no schema bronze:
+[2026-02-07T17:34:40.203+0000] {ecommerce_etl.py:305} INFO -    ✅ customers                99,441 registros
+[2026-02-07T17:34:40.213+0000] {ecommerce_etl.py:305} INFO -    ✅ order_items             112,650 registros
+[2026-02-07T17:34:40.221+0000] {ecommerce_etl.py:305} INFO -    ✅ orders                   99,441 registros
+[2026-02-07T17:34:40.232+0000] {ecommerce_etl.py:305} INFO -    ✅ payments                103,886 registros
+[2026-02-07T17:34:40.235+0000] {ecommerce_etl.py:305} INFO -    ✅ products                 32,951 registros
+[2026-02-07T17:34:40.242+0000] {ecommerce_etl.py:305} INFO -    ✅ reviews                  99,224 registros
+[2026-02-07T17:34:40.244+0000] {ecommerce_etl.py:305} INFO -    ✅ sellers                   3,095 registros
+[2026-02-07T17:34:40.244+0000] {ecommerce_etl.py:307} INFO - ======================================================================
+[2026-02-07T17:34:40.251+0000] {python.py:201} INFO - Done. Returned value was: {'loaded_tables': 7, 'total_records': 550688, 'failed_tables': 0}
+[2026-02-07T17:34:40.273+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ecommerce_etl_pipeline, task_id=load_to_bronze_layer, execution_date=20260206T000000, start_date=20260207T173342, end_date=20260207T173440
+[2026-02-07T17:34:40.336+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-07T17:34:40.358+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

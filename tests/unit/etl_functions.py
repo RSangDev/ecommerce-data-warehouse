@@ -1,30 +1,24 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
+"""
+Funções ETL extraídas para testes (sem dependências do Airflow)
+Este módulo contém cópias das funções principais para permitir testes unitários
+sem precisar do Airflow instalado.
+"""
+
 import os
+import json
+import zipfile
+import shutil
+import pandas as pd
+import sqlalchemy
+from sqlalchemy import text
+from datetime import datetime
 import logging
 
-# Configurar logger
 logger = logging.getLogger(__name__)
-
-default_args = {
-    "owner": "data-engineer",
-    "depends_on_past": False,
-    "start_date": datetime(2024, 1, 1),
-    "email_on_failure": False,
-    "email_on_retry": False,
-    "retries": 2,
-    "retry_delay": timedelta(minutes=3),
-}
 
 
 def download_kaggle_dataset():
     """Download dataset do Kaggle com validação robusta"""
-    import json
-    import zipfile
-    import shutil
-
     try:
         import kaggle
     except ImportError:
@@ -138,10 +132,6 @@ def download_kaggle_dataset():
 
 def load_to_bronze():
     """Carregar dados brutos para camada Bronze com validação robusta"""
-    import pandas as pd
-    import sqlalchemy
-    from sqlalchemy import text
-
     logger.info("=" * 70)
     logger.info("INICIANDO CARGA NA CAMADA BRONZE")
     logger.info("=" * 70)
@@ -150,7 +140,7 @@ def load_to_bronze():
     try:
         engine = sqlalchemy.create_engine(
             "postgresql://airflow:airflow@postgres:5432/warehouse",
-            pool_pre_ping=True,  # Verificar conexão antes de usar
+            pool_pre_ping=True,
             echo=False,
         )
 
@@ -264,41 +254,6 @@ def load_to_bronze():
             logger.error(f"   ❌ ERRO: {error_msg}")
             failed_tables.append((table_name, error_msg))
 
-            import traceback
-
-            logger.error(traceback.format_exc())
-
-    # Resumo
-    logger.info(f"\n{'='*70}")
-    logger.info("📊 RESUMO DA CARGA")
-    logger.info(f"{'='*70}")
-    logger.info(f"✅ Sucesso: {len(loaded_tables)}/{len(tables)} tabelas")
-    logger.info(f"📈 Total: {total_records:,} registros carregados")
-
-    if failed_tables:
-        logger.warning(f"\n⚠️  Falhas: {len(failed_tables)}")
-        for table, error in failed_tables:
-            logger.warning(f"   - {table}: {error}")
-
-    # Listar tabelas criadas
-    logger.info("\n🔍 Tabelas no schema bronze:")
-    with engine.connect() as conn:
-        result = conn.execute(
-            text(
-                "SELECT tablename FROM pg_tables "
-                "WHERE schemaname = 'bronze' "
-                "ORDER BY tablename"
-            )
-        )
-        bronze_tables = [row[0] for row in result]
-
-        for table in bronze_tables:
-            count_result = conn.execute(text(f"SELECT COUNT(*) FROM bronze.{table}"))
-            count = count_result.scalar()
-            logger.info(f"   ✅ {table:20} {count:>10,} registros")
-
-    logger.info("=" * 70)
-
     if len(loaded_tables) == 0:
         raise Exception("❌ CRÍTICO: Nenhuma tabela foi carregada!")
 
@@ -311,9 +266,6 @@ def load_to_bronze():
 
 def validate_bronze_layer():
     """Validar camada Bronze com verificações robustas"""
-    import sqlalchemy
-    from sqlalchemy import text
-
     logger.info("=" * 70)
     logger.info("VALIDANDO CAMADA BRONZE")
     logger.info("=" * 70)
@@ -373,89 +325,11 @@ def validate_bronze_layer():
                 logger.error(f"   ❌ bronze.{table:20} ERRO: {str(e)[:50]}")
                 results[table] = {"count": 0, "error": str(e)}
 
-    # Resumo final
-    logger.info(f"\n{'='*70}")
-    logger.info("📊 RESULTADO DA VALIDAÇÃO")
-    logger.info(f"{'='*70}")
-    logger.info(f"   Tabelas OK: {tables_ok}/{len(expected_tables)}")
-    logger.info(f"   Total de registros: {total_records:,}")
-
-    # Estatísticas por tabela
-    logger.info("\n📈 Distribuição de dados:")
-    for table, data in results.items():
-        if "count" in data and data["count"] > 0:
-            percentage = (data["count"] / total_records) * 100
-            logger.info(f"   {table:20} {percentage:>6.2f}%")
-
-    logger.info("=" * 70)
-
-    # Decisão final
     if tables_ok == 0:
         raise ValueError("❌ CRÍTICO: Nenhuma tabela acessível no schema bronze!")
-    elif tables_ok < len(expected_tables):
-        logger.warning(
-            f"⚠️  ATENÇÃO: Apenas {tables_ok}/{len(expected_tables)} "
-            f"tabelas disponíveis"
-        )
-        logger.info("   Prosseguindo mesmo assim...")
-    else:
-        logger.info("✅ VALIDAÇÃO COMPLETA: Todas as tabelas OK!")
 
     return {
         "tables_ok": tables_ok,
         "total_tables": len(expected_tables),
         "total_records": total_records,
     }
-
-
-# Definição da DAG
-with DAG(
-    "ecommerce_etl_pipeline",
-    default_args=default_args,
-    description="Pipeline ETL E-commerce com Airflow + DBT",
-    schedule_interval="@daily",
-    catchup=False,
-    tags=["ecommerce", "etl", "bronze", "silver", "gold"],
-    max_active_runs=1,  # Apenas 1 execução por vez
-) as dag:
-
-    # Task 1: Download do Kaggle
-    download_data = PythonOperator(
-        task_id="download_kaggle_dataset",
-        python_callable=download_kaggle_dataset,
-        execution_timeout=timedelta(minutes=15),  # Timeout de 15 min
-    )
-
-    # Task 2: Carregar para Bronze
-    load_bronze = PythonOperator(
-        task_id="load_to_bronze_layer",
-        python_callable=load_to_bronze,
-        execution_timeout=timedelta(minutes=10),
-    )
-
-    # Task 3: Validar Bronze
-    validate_bronze = PythonOperator(
-        task_id="validate_bronze_layer",
-        python_callable=validate_bronze_layer,
-        execution_timeout=timedelta(minutes=5),
-    )
-
-    # Task 4: Rodar DBT (transformações Silver/Gold)
-    dbt_run = BashOperator(
-        task_id="dbt_run",
-        bash_command=(
-            "cd /opt/airflow/dbt_project && "
-            "dbt run --profiles-dir . --full-refresh"
-        ),
-        execution_timeout=timedelta(minutes=10),
-    )
-
-    # Task 5: Testes DBT
-    dbt_test = BashOperator(
-        task_id="dbt_test",
-        bash_command="cd /opt/airflow/dbt_project && dbt test --profiles-dir .",
-        execution_timeout=timedelta(minutes=5),
-    )
-
-    # Dependências
-    download_data >> load_bronze >> validate_bronze >> dbt_run >> dbt_test
