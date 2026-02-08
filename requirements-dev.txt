@@ -1,0 +1,7 @@
+# Versão compatível do black
+black==24.3.0
+flake8==7.0.0
+pytest==8.0.0
+pytest-cov==7.0.0
+pandas==2.0.3
+sqlalchemy==1.4.49
