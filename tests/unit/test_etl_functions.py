@@ -79,7 +79,7 @@ class TestDownloadKaggleDataset:
         """Teste de download bem-sucedido"""
         # Mock kaggle
         with patch.dict("sys.modules", {"kaggle": MagicMock()}):
-            import tests.unit.etl_functions as etl_functions
+            import etl_functions
 
             # Recarregar módulo com kaggle mockado
             import importlib
@@ -129,7 +129,7 @@ class TestDownloadKaggleDataset:
     def test_download_missing_credentials(self, mock_exists):
         """Teste de erro quando credenciais não existem"""
         with patch.dict("sys.modules", {"kaggle": MagicMock()}):
-            import tests.unit.etl_functions as etl_functions
+            import etl_functions
             import importlib
 
             importlib.reload(etl_functions)
@@ -164,7 +164,7 @@ class TestLoadToBronze:
         sample_dataframe,
     ):
         """Teste de carga bem-sucedida"""
-        import tests.unit.etl_functions as etl_functions
+        import  etl_functions
 
         # Setup
         engine, connection = mock_sqlalchemy_engine
@@ -193,7 +193,7 @@ class TestLoadToBronze:
     @patch("etl_functions.os.path.exists")
     def test_load_bronze_missing_directory(self, mock_exists, mock_create_engine):
         """Teste quando diretório não existe"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         # Mock do engine para evitar erro de conexão
         engine = MagicMock()
@@ -217,7 +217,7 @@ class TestLoadToBronze:
         self, mock_exists, mock_listdir, mock_create_engine, mock_sqlalchemy_engine
     ):
         """Teste quando não há arquivos CSV"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         engine, connection = mock_sqlalchemy_engine
         mock_create_engine.return_value = engine
@@ -233,7 +233,7 @@ class TestLoadToBronze:
     @patch("etl_functions.sqlalchemy.create_engine")
     def test_load_bronze_connection_error(self, mock_create_engine):
         """Teste de erro de conexão"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         mock_create_engine.side_effect = Exception("Connection failed")
 
@@ -254,7 +254,7 @@ class TestValidateBronzeLayer:
     @patch("etl_functions.sqlalchemy.create_engine")
     def test_validate_success(self, mock_create_engine, mock_sqlalchemy_engine):
         """Teste de validação bem-sucedida"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         engine, connection = mock_sqlalchemy_engine
         mock_create_engine.return_value = engine
@@ -281,7 +281,7 @@ class TestValidateBronzeLayer:
     @patch("etl_functions.sqlalchemy.create_engine")
     def test_validate_no_tables(self, mock_create_engine, mock_sqlalchemy_engine):
         """Teste quando não há tabelas"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         engine, connection = mock_sqlalchemy_engine
         mock_create_engine.return_value = engine
@@ -304,7 +304,7 @@ class TestValidateBronzeLayer:
     @patch("etl_functions.sqlalchemy.create_engine")
     def test_validate_connection_error(self, mock_create_engine):
         """Teste de erro de conexão"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         mock_create_engine.side_effect = Exception("Connection timeout")
 
@@ -359,8 +359,9 @@ class TestDAGStructure:
             content = f.read()
 
         assert "default_args = {" in content
-        assert "'owner':" in content
-        assert "'retries':" in content
+
+        assert ('"owner":' in content or "'owner':" in content)
+        assert ('"retries":' in content or "'retries':" in content)
 
     def test_dag_tasks_defined(self):
         """Verificar se as tasks estão definidas"""
@@ -425,7 +426,7 @@ class TestEdgeCases:
         mock_sqlalchemy_engine,
     ):
         """Teste com DataFrame vazio"""
-        import tests.unit.etl_functions as etl_functions
+        import etl_functions
 
         engine, connection = mock_sqlalchemy_engine
         mock_create_engine.return_value = engine
