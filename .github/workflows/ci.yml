@@ -60,6 +60,8 @@ jobs:
           flags: unittests
           name: unit-tests-coverage
         if: always()
+        continue-on-error: true  
+
 
   # ============================================================================
   # LINTING E FORMATAÇÃO (Code Quality)
