@@ -11,8 +11,9 @@ import pandas as pd
 import sys
 import os
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # Adicionar diretório tests ao path para importar etl_functions
-sys.path.insert(0, os.path.dirname(__file__))
+#sys.path.insert(0, os.path.dirname(__file__))
 
 
 # ============================================================================
@@ -324,12 +325,12 @@ class TestDAGStructure:
 
     def test_dag_file_exists(self):
         """Verificar se o arquivo da DAG existe"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
         assert os.path.exists(dag_path), f"Arquivo {dag_path} não encontrado"
 
     def test_dag_has_correct_imports(self):
         """Verificar imports necessários no arquivo da DAG"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -341,7 +342,7 @@ class TestDAGStructure:
 
     def test_dag_has_functions(self):
         """Verificar se as funções principais existem"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -353,7 +354,7 @@ class TestDAGStructure:
 
     def test_dag_default_args_present(self):
         """Verificar se default_args está definido"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT,"airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -365,7 +366,7 @@ class TestDAGStructure:
 
     def test_dag_tasks_defined(self):
         """Verificar se as tasks estão definidas"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -379,7 +380,7 @@ class TestDAGStructure:
 
     def test_dag_dependencies_defined(self):
         """Verificar se as dependências estão definidas"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -391,12 +392,12 @@ class TestDAGStructure:
 
     def test_quality_dag_file_exists(self):
         """Verificar se o arquivo da DAG de qualidade existe"""
-        dag_path = os.path.join("airflow", "dags", "data_quality_checks.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "data_quality_checks.py")
         assert os.path.exists(dag_path), f"Arquivo {dag_path} não encontrado"
 
     def test_quality_dag_has_function(self):
         """Verificar se a função de qualidade existe"""
-        dag_path = os.path.join("airflow", "dags", "data_quality_checks.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "data_quality_checks.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -487,7 +488,7 @@ class TestIntegration:
 
     def test_dag_workflow_sequence(self):
         """Verificar sequência lógica do workflow no código"""
-        dag_path = os.path.join("airflow", "dags", "ecommerce_etl.py")
+        dag_path = os.path.join(PROJECT_ROOT, "airflow", "dags", "ecommerce_etl.py")
 
         with open(dag_path, "r", encoding="utf-8") as f:
             content = f.read()
