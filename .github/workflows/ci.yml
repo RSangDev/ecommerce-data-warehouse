@@ -42,16 +42,12 @@ jobs:
           touch tests/__init__.py
           touch tests/unit/__init__.py
           
-          # Rodar testes do diretório unit
-          cd tests/unit
-          pytest test_etl_functions.py -v \
-            --cov=etl_functions \
+          # Rodar testes DA RAIZ do projeto
+          pytest tests/unit/test_etl_functions.py -v \
+            --cov=tests/unit/etl_functions \
             --cov-report=xml \
             --cov-report=term \
-            --cov-fail-under=80
-          
-          # Mover coverage.xml para raiz
-          mv coverage.xml ../../coverage.xml
+            --cov-fail-under=84
 
       - name: Upload coverage para Codecov
         uses: codecov/codecov-action@v3
@@ -60,8 +56,6 @@ jobs:
           flags: unittests
           name: unit-tests-coverage
         if: always()
-        continue-on-error: true  
-
 
   # ============================================================================
   # LINTING E FORMATAÇÃO (Code Quality)
